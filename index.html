@@ -10,26 +10,32 @@
 </head>
 <body>
     <div id="display"></div>
-    User Name<input id="name">
+    User Name<input id="sname">
     age <input id="age">
     <button class="btn btn-success" onclick="addUser()">Add</button>
     <script>
 
+    <!-- const MY_SERVER= "https://flask-app-jb.onrender.com" -->
     const MY_SERVER= "http://127.0.0.1:5000/student"
+
     
     const delUser=(id)=>{
-        axios.delete(MY_SERVER + "/" +id)
+        axios.delete(MY_SERVER + "/" + id)
+        getData();
     }
     const updUser=(id)=>{
-        axios.put(MY_SERVER,{name:name.value,age:age.value})
+        console.log(id)
+        axios.put(MY_SERVER,{name:sname.value, age:age.value})
+        getData();
     }
     const addUser=()=>{
-        axios.post(MY_SERVER,{name:name.value,age:age.value} )
+        axios.post(MY_SERVER,{name:sname.value, age:age.value})
+        console.log(sname.value)
+        getData();
     }
 
     const getData=async ()=>{
-       const res=await axios.get(MY_SERVER)
-    //    console.log(res.data)
+       const res=await axios.get(MY_SERVER) 
        display.innerHTML=res.data.map(usr=> `<div>
         <div class="card" style="width: 18rem;">
             <img src="https://picsum.photos/200" class="card-img-top" alt="...">
