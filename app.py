@@ -6,8 +6,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///students.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-#CORS(app)
-cors = CORS(app, resources={r"/*": {"origins": "*"}}, allow_methods=["*"],allow_host=["*"])
+CORS(app)
+# cors = CORS(app, resources={r"/*": {"origins": "*"}}, allow_methods=["*"],allow_host=["*"])
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
